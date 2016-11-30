@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>chatroom</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Roboto Font -->
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+  <!-- jQuery -->
+  <script src="js/jquery.js"></script>
+
+  <!-- Material Design Lite -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.blue_grey-teal.min.css" />
+  <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+
+  <!-- Custom -->
+  <script src="js/script.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+
+</end>
+<body>
+  <div class="mdl-grid">
+
+  <!-- SIGNIN/UP MARKUP -->
+
+  <!-- PROFILE Update MARKUP -->
+  <div class="mdl-card mdl-shadow--2dp hover-shadow">
+    <div class="mdl-card__title mdl-color--blue-grey mdl-color-text--white" id="signbk">
+      <h2 class="mdl-card__title-text" id="signfont">User Info Update</h2>
+    </div>
+
+    <div class="mdl-card__supporting-text">
+      <!-- User Info Form -->
+      <form action="#">
+        <div class="mdl-textfield mdl-js-textfield">
+          <input class="mdl-textfield__input" type="text" id="userName">
+          <label class="mdl-textfield__label" for="userName">Name</label>
+        </div>
+      </form>
+      <form action="#">
+        <div class="mdl-textfield mdl-js-textfield">
+          <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="input_age">
+          <label class="mdl-textfield__label" for="input_age">Age</label>
+          <span class="mdl-textfield__error">Input is not a number!</span>
+        </div>
+      </form>
+      <form action="#">
+        <div class="mdl-textfield mdl-js-textfield">
+          <input class="mdl-textfield__input" type="text"id="input_occu">
+          <label class="mdl-textfield__label" for="sample2">Occupation</label>
+        </div>
+      </form>
+      <form action="#">
+      <div class="mdl-textfield mdl-js-textfield">
+        <textarea class="mdl-textfield__input" type="text" rows= "3" id="input_desc" ></textarea>
+        <label class="mdl-textfield__label" for="input_desc">Descriptions</label>
+      </div>
+    </form>
+      <div class="mdl-textfield mdl-js-textfield">
+        <h6>Your photo: </h6>
+        <input type="file" id="file" name="file"/>
+      </div>
+
+      <!-- SignIn/SignUp/Logout Button -->
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" id="btnSubmit">Submit</button>
+    </div>
+  </div>
+
+
+
+
+  <!--end-->
+</div>
+</body>
+</html>

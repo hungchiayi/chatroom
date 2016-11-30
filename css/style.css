@@ -1,0 +1,76 @@
+.mdl-card {
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.personalpic{
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+}
+
+
+#user-info {
+  padding: 10px;
+  width: 216px;
+  box-sizing: border-box;
+}
+
+#user-pic {
+  padding:10px;
+  width: 72px;
+  box-sizing: border-box;
+}
+
+input(type="password") {
+  font:large;
+  font-size:150%;
+}
+
+.demo-avatar {
+    width: 60px;
+    height: 60px;
+    padding: 0px;
+}
+
+ul {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+ul li {
+    font-family: Roboto;
+    /*font-size: 120%;*/
+    /*font-weight: 300;*/
+    /*margin-bottom: 10px;*/
+    line-height: 24px;
+}
+
+#chatRoom ul {
+  list-style: none;
+  margin: 0px;
+  padding: 20px;
+  height: 420px;
+  overflow: auto;
+}
+#example-messages-pro ul li {
+    font-family: Roboto;
+    font-size: 120%;
+    font-weight: 300;
+    margin-bottom: 10px;
+    line-height: 24px;
+}
+#chatRoom ul li:last-child {
+    margin: 0px;
+}
+#chatRoom ul .example-chat-username {
+    margin-right: 10px;
+}
+#chatRoom footer{
+  margin-left: 20px;
+}
+.personalpic{
+  width: 40px;
+  height: 40px;
+  margin: 5px 5px 5px 5px;
+}
