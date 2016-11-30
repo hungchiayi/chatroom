@@ -157,25 +157,6 @@ $(document).ready(function(){
         $des.on('value', function(snap){
           $profileDescriptions.html(snap.val());
         });
-      dbChatRoom.limitToLast(8).on('child_added', function (snapshot) {
-        //GET DATA
-        var use = firebase.auth().currentUser;
-        var data = snapshot.val();
-        var username = use.displayName || "anonymous";
-        var message = data.text;
-        var personpic = data.personpic;
-        //CREATE ELEMENTS MESSAGE & SANITIZE TEXT
-        var $messageElement = $("<li>");
-        var $nameElement = $("<strong class='example-chat-username'></strong>");
-        $nameElement.text(' '+username+' : ').prepend($('<img>',{class:'personalpic',src:data.personpic}));;
-        $messageElement.text(message).prepend($nameElement);
-
-        //ADD MESSAGE
-        $messageList.append($messageElement)
-
-        //SCROLL TO BOTTOM OF MESSAGE LIST
-        $messageList[0].scrollTop = $messageList[0].scrollHeight;
-      });//child_added callback
 
       user.providerData.forEach(function (profile) {
         console.log("Sign-in provider: "+profile.providerId);
@@ -192,6 +173,60 @@ $(document).ready(function(){
       $profileAge.html("N/A");
     }
   });
+
+  firebase.auth().onAuthStateChanged(function(user){
+    if(user){
+    var use = firebase.auth().currentUser;
+    const dbUserid = dbUser.child(use.uid);
+
+    $messageField.keypress(function (e) {
+      if (e.keyCode == 13) {
+
+    var use = firebase.auth().currentUser;
+
+    //FIELD VALUES
+    var username = use.displayName;
+    var message = $messageField.val();
+    var picture = use.photoURL;
+    console.log(username);
+    console.log(message);
+
+    //SAVE DATA TO FIREBASE AND EMPTY FIELD
+    dbChatRoom.push({name:username, text:message, pic:picture});
+    $messageField.val('');
+  }
+});
+
+// Add a callback that is triggered for each chat message.
+  dbChatRoom.limitToLast(10).on('child_added', function (snapshot) {
+
+  var use = firebase.auth().currentUser;
+
+  //GET DATA
+  var data = snapshot.val();
+  var username = data.name || "anonymous";
+  var message = data.text || "";
+  var pic = data.pic;
+
+  //CREATE ELEMENTS MESSAGE & SANITIZE TEXT
+  var $messageElement = $("<li>");
+  var $nameElement = $("<strong class='example-chat-username'></strong>");
+
+
+  if(message != ""){
+    $nameElement.text(username).prepend($('<img>',{class:'personalpic',src:data.pic}));
+    $messageElement.text(message).prepend($nameElement);
+
+    //ADD MESSAGE
+    $messageList.append($messageElement);
+  }
+
+  //SCROLL TO BOTTOM OF MESSAGE LIST
+  $messageList[0].scrollTop = $messageList[0].scrollHeight;
+});
+
+}
+});
 
   // SignOut
   $btnSignOut.click(function(){
@@ -247,19 +282,7 @@ $(document).ready(function(){
     });
   });
   // LISTEN FOR KEYPRESS EVENT
-  $messageField.keypress(function (e) {
-    if (e.keyCode == 13) {
-      //FIELD VALUES
-      var use = firebase.auth().currentUser;
-      var message = $messageField.val();
-      var picture = use.photoURL;
-      console.log(message);
 
-      //SAVE DATA TO FIREBASE AND EMPTY FIELD
-      dbChatRoom.push({text:message, personpic:picture});
-      $messageField.val('');
-    }
-  });
 //----
 
 });
